@@ -1,0 +1,21 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+<div>
+{% for mail in mail_list %}
+    <div>[SUBJECT] {{ mail.subject }}</div>
+    <div>[FROM] {{ mail.from }}</div>
+    <div>
+      <pre>{{ mail.content }}</pre>
+    </div>
+{% endfor %}
+</div>
+
+</body>
+
+</html>
