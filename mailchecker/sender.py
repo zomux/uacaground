@@ -1,5 +1,7 @@
 import smtplib
 
+
+
 class MailSender(object):
   
   def send(self, fromAddr, toAddr, subject, content):

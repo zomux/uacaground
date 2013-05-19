@@ -6,15 +6,39 @@
 
 <body>
 
-<div>
+<div id="status"></div>
+
 {% for mail in mail_list %}
-    <div>[SUBJECT] {{ mail.subject }}</div>
-    <div>[FROM] {{ mail.from }}</div>
+    <div onclick="block_selected(this)" data_from="{{ mail.from }}">
+    <div>[{{ forloop.counter }}][SUBJECT] {{ mail.subject }}</div>
+    <div>[FROM] {{ mail.name }} ( {{ mail.from }} )</div>
     <div>
       <pre>{{ mail.content }}</pre>
     </div>
+    </div>
 {% endfor %}
-</div>
+
+<input type="button" value="Send Them Mails" onclick="send_mails()" />
+
+<script type="text/javascript">
+$E = function(id){ return document.getElementById(id); };
+
+accepted_mails = []
+
+block_selected = function(e) {
+    var mail = e.getAttribute("data_from");
+    if (accepted_mails.indexOf(mail) >= 0) return;
+    accepted_mails.push(mail);
+    e.style.background = "lightblue";
+    $E("status").innerHTML = accepted_mails.join(",");
+};
+
+send_mails = function(){
+    var mailParam = accepted_mails.join(",");
+    window.open("/mailchecker/send?mails=" + mailParam);
+};
+
+</script>
 
 </body>
 

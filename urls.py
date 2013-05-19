@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name="index.html")),
 
     url(r'^mailchecker/$', 'mailchecker.views.index'),
+    url(r'^mailchecker/send', "mailchecker.views.send"),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

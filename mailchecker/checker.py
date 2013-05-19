@@ -45,7 +45,8 @@ class BlogCDMailChecker(object):
     name, addr = email.utils.parseaddr(emailObject['From'])
     name = self.decodeHeaderString(name)
     
-    return {"from": "%s (%s)" % (name, addr),
+    return {"from": addr,
+            "name": name,
             "content": quopri.decodestring(get_first_text_block(emailObject)).decode("GB2312").encode("utf-8"),
             "subject": (subject)}
 
